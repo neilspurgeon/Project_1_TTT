@@ -1,33 +1,41 @@
+
+
 // OOP Tic Tac Toe boilerplate code
 
 // Execute this code only AFTER the document is ready
 // Hint: use jQuery's `$(document).ready`
 
   function Game() {
-    //Create a new instance of player 1
-    //this.player1 = ...
-
-    //Do the same for a player 2
-    //this.player2 = ...
-    
-    //Create the board
-    //this.board = ...
+    //sets up the game 
+    //creates the board, player1, player2
+    this.board = new Board;
+    this.player1 = new Player('x');
+    this.player2 = new Player('o');
+    this.turnCounter += 1; //variable that increments turn on every move 
   }
 
   // Remember: prototypes are shared functions between all game instances
   Game.prototype.nextPlayer = function() {
     //Switch players
+    //if turn count is even, player1 is selected
+    if (this.turnCounter % 2 === 0) {
+      this.playerMove = player1;
+    } else {
+      this.playerMove = player2;
+    }
   };
 
   // `Game.prototype.init` kicks off a new game with a board and two players
   Game.prototype.init = function() {
-    //
+    //reset turn count
+    this.turnCounter = 1; 
   };
 
   // A starter Player constructor.
   function Player(team) {
     //Is the player X or O?
     //this.team = ...
+    this.team = team;
   };
 
   // A starter Board constructor.
