@@ -1,1 +1,9 @@
 /* Style Sheet */
+
+/*cells*/
+.cell {
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	background-color: #666;
+}
