@@ -16,10 +16,10 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container board-container">
   <div id="win-overlay">
     <h1>Tie Game</h1>
-    <h2>Click anywhere to play again</h2>
+    <h2>Click here to play again</h2>
   </div>
   <div class="svg-container">
     <svg class="board-lines">
@@ -29,37 +29,36 @@
       <line x1="66%" y1="0" x2="66%" y2="100%" ></line>
     </svg>
   </div>
-  <ul>
-    <li class="cell"></li>
-    <li class="cell"></li>
-    <li class="cell"></li>
-    <li class="cell"></li>
-    <li class="cell"></li>
-    <li class="cell"></li>
-    <li class="cell"></li>
-    <li class="cell"></li>
-    <li class="cell"></li>
+  <ul class="cell-container">
+    <li class="cell xhover"></li>
+    <li class="cell xhover"></li>
+    <li class="cell xhover"></li>
+    <li class="cell xhover"></li>
+    <li class="cell xhover"></li>
+    <li class="cell xhover"></li>
+    <li class="cell xhover"></li>
+    <li class="cell xhover"></li>
+    <li class="cell xhover"></li>
   </ul>
 </div>
 
 <div class="container">
   <div class="row">  
-    <div id="player1-score" class="one-third column">
-      <h1>0</h1>
-      <h2>Player One</h2>
+    <div class="score one-third column">
+      <h1 id="player1-score">0</h1>
+      <form>
+        <input class="player1-name" input="text" name="name" placeholder="Player X">
+      </form>
     </div>
-    <div id="logo" class="one-third column">
-      <h1>TIC<br/>TAC<br/>TOE</h1>
+    <button id="reset-board" class="one-third column">RESET BOARD</button>
+    <div class="score one-third column">
+      <h1 id="player2-score">0</h1>
+      <form>
+        <input class="player2-name" input="text" name="name" placeholder="Player O">
+      </form>
     </div>
-    <div id="player2-score" class="one-third column">
-      <h1>0</h1>
-      <h2>Player Two</h2>
-    </div>
-  </div>
-
-  <div class="row">
-    <button id="reset-board" class="one-third column offset-by-one-third">RESET BOARD</button>
   </div>
 </div>
+
 </body>
 </html
