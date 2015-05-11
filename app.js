@@ -23,7 +23,7 @@ $(document).ready(function() {
     $("button").on("click", function (event) {
       _this.resetBoard();
     });
-  }
+  };
 
   // Player Constructor
   // Assigns team variable to player
@@ -59,6 +59,7 @@ $(document).ready(function() {
     $("#win-overlay").fadeOut(600);
     this.turnCounter = 1;
     this.currentPlayer = this.player1;
+    this.changeHover();
   };
 
   // init Prototype 
@@ -98,7 +99,7 @@ $(document).ready(function() {
       this.player2Score += 1;
       $("#player2-score").html(this.player2Score);
     }
-    $("#win-overlay h1").html( this.currentPlayer["name"] + " won the game");
+    $("#win-overlay h1").html(this.currentPlayer["name"] + " won the game");
     $("#win-overlay").fadeIn(600);
     $(".cell-container, .board-lines").fadeTo(600, 0.1);
     this.closeOverlay();
