@@ -8,12 +8,12 @@ $(document).ready(function() {
   function Game() {
     //sets up the game 
     //creates the board, player1, player2
-    this.board = new Board;                 
+    this.$cell = $(".cell");                //sets variables for cells
+    this.board = new Board(this.$cell);                 
     this.player1 = new Player("x");         //access ex: game.player1, this.player1
     this.player2 = new Player("o");
     this.turnCounter = 1;                   //variable that increments turn on every move
     this.playerMove = this.player1; 
-    this.$cell = $(".cell");                //sets variables for cells
     
     //scoreboard
     this.player1Score = 0;
@@ -25,7 +25,6 @@ $(document).ready(function() {
     }); 
   }
 
-  // Remember: prototypes are shared functions between all game instances
   Game.prototype.nextPlayer = function() {
     //Switch players
     //if turn count is even, player1 is selected
@@ -39,6 +38,8 @@ $(document).ready(function() {
   Game.prototype.resetBoard = function (event) {
     var _this = this;
     this.$cell.removeClass(_this.player1["team"]).removeClass(_this.player2["team"]);
+    this.turnCounter = 1;
+    this.playerMove = this.player1;
   };
 
   // `Game.prototype.init` kicks off a new game with a board and two players
@@ -65,53 +66,70 @@ $(document).ready(function() {
     this.team = team;
   };
 
-  // A starter Board constructor.
-  function Board() {
-    //Tracks the cells of the board instance
-    //this.$cells = ...
 
-    // //log moves in array
-    // this.boardMoves = [[null, null, null],
-    //                    [null, null, null],
-    //                    [null, null, null]]
-
-    //Store any other properties that board may have below, such as a reset option
+  // Board
+  // This constructor takes in game.$cell and renames it $cell.
+  // It then triggers the fluidCells prototype and passes $cell
+  // This will also board moves...
+  function Board($cell) {
+   this.fluidCells($cell);
   };
 
-  // Check for possible wins
+  // fluidCells
+  // This prototype of Board sets initial cell height equal to cell width.
+  // It then listens for window resize and updates the height. 
+  Board.prototype.fluidCells = function ($cell) {
+    
+    $cell.css({ "height" : $cell.width() });
+    
+    $(window).resize(function (event) {
+      $cell.css({ "height" : $cell.width() });
+    })
+  }
+
+
+  // checkWin
+  // Sets team to either "x" or "o"
+  // Moves through each row, collumn, and diagonal checking each for "o" or "x" class
+  // Short circuits when a condition returns true.  
   Game.prototype.checkWin = function () {
     var team = this.playerMove["team"];
+    
     //check row 1
-    if ( $("#one").hasClass(team) && $("#two").hasClass(team) && $("#three").hasClass(team) ) {
-      this.setWin();
+    if ( $("li:nth-child(1)").hasClass(team) && $("li:nth-child(2)").hasClass(team) && $("li:nth-child(3)").hasClass(team) ) {
+      return this.setWin();
     } 
     //check row 2
-    else if ( $("#four").hasClass(team) && $("#five").hasClass(team) && $("#six").hasClass(team) ) {
-      this.setWin();
+    else if ( $("li:nth-child(4)").hasClass(team) && $("li:nth-child(5)").hasClass(team) && $("li:nth-child(6)").hasClass(team) ) {
+      return this.setWin();
     } 
     //check row 3
-    else if ( $("#seven").hasClass(team) && $("#eight").hasClass(team) && $("#nine").hasClass(team) ) {
-      this.setWin();
+    else if ( $("li:nth-child(7)").hasClass(team) && $("li:nth-child(8)").hasClass(team) && $("li:nth-child(9)").hasClass(team) ) {
+      return this.setWin();
     }
     //check col 1
-    else if ( $("#one").hasClass(team) && $("#four").hasClass(team) && $("#seven").hasClass(team) ) {
-      this.setWin();
+    else if ( $("li:nth-child(1)").hasClass(team) && $("li:nth-child(4)").hasClass(team) && $("li:nth-child(7)").hasClass(team) ) {
+      return this.setWin();
     } 
     //check col 2
-    else if ( $("#two").hasClass(team) && $("#five").hasClass(team) && $("#eight").hasClass(team) ) {
-      this.setWin();
+    else if ( $("li:nth-child(2)").hasClass(team) && $("li:nth-child(5)").hasClass(team) && $("li:nth-child(8)").hasClass(team) ) {
+      return this.setWin();
     } 
     //check col 3
-    else if ( $("#three").hasClass(team) && $("#six").hasClass(team) && $("#nine").hasClass(team) ) {
-      this.setWin();
+    else if ( $("li:nth-child(3)").hasClass(team) && $("li:nth-child(6)").hasClass(team) && $("li:nth-child(9)").hasClass(team) ) {
+      return this.setWin();
     } 
     //check diag \
-    else if ( $("#one").hasClass(team) && $("#five").hasClass(team) && $("#nine").hasClass(team) ) {
-      this.setWin();
+    else if ( $("li:nth-child(1)").hasClass(team) && $("li:nth-child(5)").hasClass(team) && $("li:nth-child(9)").hasClass(team) ) {
+      return this.setWin();
     } 
     //check diag /
-    else if ( $("#seven").hasClass(team) && $("#five").hasClass(team) && $("#three").hasClass(team) ) {
-      this.setWin();
+    else if ( $("li:nth-child(7)").hasClass(team) && $("li:nth-child(5)").hasClass(team) && $("li:nth-child(3)").hasClass(team) ) {
+      return this.setWin();
+    }
+    //checks tie /
+    else if (this.turnCounter === 10) {
+      return this.setTie();
     }
   }
 
@@ -124,6 +142,13 @@ $(document).ready(function() {
     }
     this.resetBoard();
   }
+
+  //setTie
+  Game.prototype.setTie = function () {
+    alert("Tie game");
+    this.resetBoard();
+  }
+
 
   // Start the game!
   var game = new Game();

@@ -1,29 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Title</title>
   <meta charset="utf-8" />
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" type="text/css" href="main.css">
+  <meta name="description" content="Responsive two player tic tac toe game">
+  <meta name="author" content="Neil Spurgeon">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
-  <!-- HTML Body -->
-  <h1>Tic Tac Toe</h1>
-  <div id="board-container">
-    <div id="one" class="cell"></div>
-    <div id="two" class="cell"></div>
-    <div id="three" class="cell"></div>
-    <div id="four" class="cell"></div>
-    <div id="five" class="cell"></div>
-    <div id="six" class="cell"></div>
-    <div id="seven" class="cell"></div>
-    <div id="eight" class="cell"></div>
-    <div id="nine" class="cell"></div>
-    <button id="reset-board">RESET BOARD</button>
+
+<div class="container">
+  <div id="win-overlay">
+    <h1>Tie Game</h1>
+    <h2>Click anywhere to play again</h2>
   </div>
-  <!-- Reset button -->
+  <div class="svg-container">
+    <svg class="board-lines">
+      <line x1="0" y1="33%" x2="100%" y2="33%"></line>
+      <line x1="0" y1="66%" x2="100%" y2="66%"></line>
+      <line x1="33%" y1="0" x2="33%" y2="100%"></line>
+      <line x1="66%" y1="0" x2="66%" y2="100%" ></line>
+    </svg>
+  </div>
+  <ul>
+    <li class="cell"></li>
+    <li class="cell"></li>
+    <li class="cell"></li>
+    <li class="cell"></li>
+    <li class="cell"></li>
+    <li class="cell"></li>
+    <li class="cell"></li>
+    <li class="cell"></li>
+    <li class="cell"></li>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="row">  
+    <div id="player1-score" class="one-third column">
+      <h1>0</h1>
+      <h2>Player One</h2>
+    </div>
+    <div id="logo" class="one-third column">
+      <h1>TIC<br/>TAC<br/>TOE</h1>
+    </div>
+    <div id="player2-score" class="one-third column">
+      <h1>0</h1>
+      <h2>Player Two</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <button id="reset-board" class="one-third column offset-by-one-third">RESET BOARD</button>
+  </div>
+</div>
 </body>
-</html>
+</html
