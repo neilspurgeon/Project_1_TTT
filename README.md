@@ -18,3 +18,4 @@
 - Undo last move
 - View preivous games
 - Animate .svg pieces
+- Add another turn indicator for touch screens. 
